@@ -1,0 +1,12 @@
+.selectionBox {
+    border-width:1px;
+    border-style:solid;
+    border-color:aqua;
+    left: 0px;
+    top: 0px;
+    width:100px;
+    height: 100px;
+    position: absolute;
+    float:left;
+    z-index:100000;
+}

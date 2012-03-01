@@ -1,0 +1,2 @@
+App.Units = {};
+App.Selections = {};
