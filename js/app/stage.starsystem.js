@@ -7,6 +7,7 @@
         this.materials = {};
         this.meshes = {};
         this.shapes = {};
+        this.Units = [];
         this.farestCameraPosition = 5000;
         
         //input managment
@@ -35,7 +36,7 @@
         };
         
         var $viewport = this._controller.getViewport();
-
+        this.viewport = $viewport;
         // Initialize camera
         this.camera = new THREE.PerspectiveCamera( 45, $viewport.width() / $viewport.height(), 1, 999999 );
       
@@ -46,7 +47,10 @@
 
         // Create scene
         this.scene = new THREE.Scene();
-
+        
+        //allow user to select his units
+        this.selectionHandler = new App.SelectionHandler(this);
+        this.selectionHandler.init();
         
         
         //initialize postprocessing
@@ -59,6 +63,10 @@
       
         this.createSystem(systemData);
    
+    };
+    
+    StarSystem.prototype.getCamera = function() {
+        return this.camera;
     };
     
     StarSystem.prototype._initializeGeometry = function(){
@@ -181,7 +189,7 @@
             ship.position.set(data.ships[i].position.x, data.ships[i].position.y, data.ships[i].position.z);
             ship.rotation.set(data.ships[i].rotation.x, data.ships[i].rotation.y, data.ships[i].rotation.z);
             ship.scale.set(2,2,2);
-            
+            this.Units.push(ship);
             this.scene.add(ship);
             var shipGrid  = new THREE.Line( this.shapes['circle'].createPointsGeometry(60), this.materials.etc.grid)
             shipGrid.position.set(data.ships[i].position.x, data.ships[i].position.y, data.ships[i].position.z);

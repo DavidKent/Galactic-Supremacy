@@ -38,7 +38,7 @@
 
         //render the current stage
         this.currentStage = new App.Stages.StarSystem(this);
-
+        
 
         //event binding
         this._$viewport.on('mousedown mouseup mousemove dblclick click mousewheel', this.onEvent());
